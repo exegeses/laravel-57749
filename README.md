@@ -8,7 +8,7 @@
 > sensei: Marcos Pinardi |
 
 1. Definición
-2. Requisitos
+2. Requisitos ![Packagist PHP Version Support](https://img.shields.io/packagist/php-v/laravel/laravel?style=for-the-badge)
 3. Recursos
 4. Instalación
 5. Iniciar el server
