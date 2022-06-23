@@ -1,4 +1,4 @@
-<img src="extras/imagenes/laravel-logo.jpg">
+<img src="extras/imagenes/laravel-header.jpg">
 
 # Curso de Laravel código 57749
 
