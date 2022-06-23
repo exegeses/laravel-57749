@@ -1,7 +1,7 @@
 <img src="extras/imagenes/laravel-header.jpg">
 
 # Curso de Laravel código 57749
-
+<img src="https://img.shields.io/badge/Laravel-F55247?style=for-the-badge&logo=laravel&logoColor=white"><img src="https://img.shields.io/badge/PHP-8993BF?style=for-the-badge&logo=php&logoColor=white"><img src="https://img.shields.io/badge/MySQL-4D9EB1?style=for-the-badge&logo=mysql&logoColor=white">
 > Curso de Laravel |  
 > Lunes y Jueves 10hs a 12hs (Arg) |  
 > Código: 57749 |  
