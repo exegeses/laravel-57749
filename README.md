@@ -97,7 +97,7 @@ LaraJobs <https://larajobs.com/>
 
 > Ejemplo:
 
-    git clone https://github.com/exegeses/laravel-57751.git
+    git clone https://github.com/exegeses/laravel-57749.git
 
 
 > Una vez descargado, vamos a obtener los componetes necesorios para que funcione el framework  
