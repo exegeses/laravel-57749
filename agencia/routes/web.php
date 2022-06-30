@@ -39,4 +39,8 @@ Route::get('/param/{nombre}/{numero}', function ( $nombre, $numero )
     return 'Nombre:'.$nombre.' n:'.$numero;
 });
 
-
+## desde la plantilla
+Route::get('/inicio', function ()
+{
+    return view('inicio');
+});
