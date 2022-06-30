@@ -22,9 +22,10 @@
 
     <ul class="list-group">
 
+    @foreach( $regiones as $region )
         <li class="col-md-6 list-group-item list-group-item-action d-flex justify-content-between">
             <div class="col">
-                <span class="fs-4">Nombre región</span>
+                <span class="fs-4">{{ $region->regNombre }}</span>
             </div>
             <div class="col text-end btn-group">
                 <a href="/region/edit/id" class="btn btn-outline-secondary me-1">
@@ -37,7 +38,7 @@
                 </a>
             </div>
         </li>
-
+    @endforeach
     </ul>
 
 @endsection

@@ -52,6 +52,6 @@ Route::get('/regiones', function ()
     $regiones = DB::select('SELECT idRegion, regNombre
                                 FROM regiones');
 
-    //pasamos datos a la vista
-    
+    //pasamos listado a la vista
+    return view('regiones', [ 'regiones'=>$regiones ]);
 });
