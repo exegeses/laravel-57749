@@ -55,3 +55,4 @@ Route::get('/regiones', function ()
     //pasamos listado a la vista
     return view('regiones', [ 'regiones'=>$regiones ]);
 });
+
