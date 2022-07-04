@@ -5,7 +5,7 @@
 
     <div class="alert bg-light p-4 col-8 mx-auto shadow">
         <form action="/region/store" method="post">
-
+        @csrf
             <div class="form-group">
                 <label for="regNombre">Nombre de la región</label>
                 <input type="text" name="regNombre"

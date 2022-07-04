@@ -51,8 +51,29 @@ Route::get('/regiones', function ()
     //obtenemos listado de regiones
     $regiones = DB::select('SELECT idRegion, regNombre
                                 FROM regiones');
-
     //pasamos listado a la vista
     return view('regiones', [ 'regiones'=>$regiones ]);
+});
+Route::get('/region/create', function ()
+{
+    return view('regionCreate');
+});
+Route::post('/region/store', function ()
+{
+    //capturamos deto enviado por el form
+    //$regNombre = request()->input('regNombre');
+    //$regNombre = request('regNombre');
+    $regNombre = request()->regNombre;
+    //insertamos dato en tabla regiones
+    DB::insert(
+                "INSERT INTO regiones
+                        ( regNombre )
+                    VALUE
+                        ( :regNombre )",
+                    [ $regNombre ]
+              );
+    //reporte de alta ok
+    return redirect('/regiones')
+                    ->with(['mensaje'=>'Región: '.$regNombre.' agregada correctamente.']);
 });
 
