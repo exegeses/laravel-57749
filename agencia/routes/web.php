@@ -49,8 +49,11 @@ Route::get('/inicio', function ()
 Route::get('/regiones', function ()
 {
     //obtenemos listado de regiones
-    $regiones = DB::select('SELECT idRegion, regNombre
-                                FROM regiones');
+    /* Raw SQL
+     * $regiones = DB::select('SELECT idRegion, regNombre
+                                FROM regiones');*/
+    $regiones = DB::table('regiones')->get();
+
     //pasamos listado a la vista
     return view('regiones', [ 'regiones'=>$regiones ]);
 });
@@ -65,19 +68,53 @@ Route::post('/region/store', function ()
     //$regNombre = request('regNombre');
     $regNombre = request()->regNombre;
     //insertamos dato en tabla regiones
-    DB::insert(
+    /*
+     * raw sql
+     DB::insert(
                 "INSERT INTO regiones
                         ( regNombre )
                     VALUE
                         ( :regNombre )",
                     [ $regNombre ]
-              );
+              );*/
+    DB::table('regiones')->insert( [ 'regNombre'=>$regNombre ] );
     //reporte de alta ok
     return redirect('/regiones')
                     ->with(['mensaje'=>'Región: '.$regNombre.' agregada correctamente.']);
 });
-Route::get('/region/edit/{id}', function ()
+Route::get('/region/edit/{id}', function ($id)
 {
-    return view('regionEdit');
+    //obtener dato de la región
+    /*$region = DB::select('select idRegion, regNombre
+                            from regiones
+                            where idRegion = :idRegion',
+                                    [ $id ]
+                            );*/
+    $region = DB::table('regiones')
+                        ->where('idRegion', $id)
+                        ->first();
+    return view('regionEdit', [ 'region'=>$region ]);
 });
+Route::post('/region/update', function()
+{
+    $regNombre = request()->regNombre;
+    $idRegion = request()->idRegion;
+    /*DB::update('UPDATE regiones
+                    SET regNombre = :regNombre
+                    WHERE idRegion = :idRegion,
+                    [ $regNombre, $idRegion ]');*/
+    /*DB::table('regiones')
+            ->where('idRegion', $idRegion)
+            ->update(['regNombre' => $regNombre]);*/
+    try {
+        DB::table('regiones')->where('idRegion',$idRegion)->update( [ 'regNombre' => $regNombre ] );
+        return redirect('/regiones')->with(['mensaje' => 'Región:'.$regNombre.'modificada correctamente']);
+    } catch (\Throwable $th) {
+        //throw $th;
+        return redirect('/regiones')->with(['mensaje' => 'No se pudo modificar la región']);
+    }
+});
+Route::get('/region/delete/{id}', function()
+{
 
+});

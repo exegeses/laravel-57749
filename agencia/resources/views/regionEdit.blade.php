@@ -9,7 +9,10 @@
             <div class="form-group">
                 <label for="regNombre">Nombre de la región</label>
                 <input type="text" name="regNombre"
+                       value="{{ $region->regNombre }}"
                        class="form-control" id="regNombre" required>
+                <input type="hidden" name="idRegion"
+                       value="{{ $region->idRegion }}">
             </div>
 
             <button class="btn btn-dark my-3 px-4">Modificar región</button>
