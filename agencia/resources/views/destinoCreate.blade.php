@@ -6,7 +6,7 @@
     <div class="alert bg-light border border-white shadow round col-8 mx-auto p-4">
 
         <form action="/destino/store" method="post">
-
+        @csrf
             <div class="form-group mb-2">
                 <label for="destNombre">Nombre del Destino:</label>
                 <input type="text" name="destNombre"
@@ -19,6 +19,11 @@
                 <select name="idRegion" id="idRegion"
                         class="form-control" required>
                     <option value="">Seleccione una región</option>
+
+                    @foreach ($regiones as $region)
+                        <option value="{{$region->idRegion}}">{{$region->regNombre}}</option>
+                    @endforeach
+
                 </select>
             </div>
 
