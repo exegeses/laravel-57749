@@ -16,7 +16,7 @@
             </a>
         </div>
         <div class="col text-end">
-            <a href="/region/create" class="btn btn-outline-secondary">
+            <a href="/destino/create" class="btn btn-outline-secondary">
                 <i class="bi bi-plus-square"></i>
                 Agregar
             </a>
@@ -25,21 +25,21 @@
 
 
     <ul class="list-group">
-
+    @foreach ($destinos as $destino)
         <li class="col-md-6 list-group-item list-group-item-action d-flex justify-content-between">
             <div class="col-3">
-                <span class="fs-5">Destino (aeropuerto)</span>
+            <span class="fs-5">{{ $destino->destNombre }}</span>
             </div>
             <div class="col-2">
-                región
+                {{ $destino->regNombre }}
             </div>
             <div class="col-2">
-                <span class="precio3">$precio</span>
+                <span class="precio3">${{ $destino->destPrecio }}</span>
             </div>
             <div class="col-2">
                 <p>
-                    A: n <br>
-                    D: n
+                    A: {{ $destino->destAsientos }} <br>
+                    D: {{ $destino->destDisponibles }}
                 </p>
             </div>
             <div class="col text-end btn-group">
@@ -53,7 +53,7 @@
                 </a>
             </div>
         </li>
-
+        @endforeach
     </ul>
 
 @endsection

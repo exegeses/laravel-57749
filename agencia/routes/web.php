@@ -145,3 +145,22 @@ Route::post('/region/destroy', function ()
         return redirect('/regiones')->with(['mensaje' => 'No se pudo eliminar la región']);
     }
 });
+###### CRUD de destinos ########
+Route::get('/destinos', function () {
+    //obtenemos listado de destinos
+    /*
+     $destinos = DB::select(
+
+                        'SELECT idDestino, destNombre,
+                                regNombre, destPrecio,
+                                destAsientos, destDisponibles
+                            FROM destinos d
+                                JOIN regiones r
+                                ON r.idRegion = d.idRegion
+                            ');*/
+    $destinos = DB::table('destinos as d')
+                    ->join('regiones as r', 'r.idRegion', '=', 'd.idRegion')
+                    ->get();
+    //Pasamos datos a la vista
+    return view('destinos', ['destinos' => $destinos]);
+});
