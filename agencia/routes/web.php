@@ -114,7 +114,34 @@ Route::post('/region/update', function()
         return redirect('/regiones')->with(['mensaje' => 'No se pudo modificar la región']);
     }
 });
-Route::get('/region/delete/{id}', function()
+Route::get('/region/delete/{id}', function($id)
 {
-
+    $region = DB::table('regiones')
+                    ->where('idRegion',$id)
+                    ->first();
+    $cantidad = DB::table('destinos')
+                    ->where('idRegion', $id)
+                    ->count();
+    return view('regionDelete',
+                        [
+                            'region'=>$region,
+                            'cantidad'=>$cantidad
+                        ]
+                );
+});
+Route::post('/region/destroy', function ()
+{
+    $regNombre = request()->regNombre;
+    $idRegion = request()->idRegion;
+    try {
+        DB::table('regiones')
+            ->where('idRegion',$idRegion)
+            ->delete();
+        return redirect('/regiones')
+            ->with(['mensaje' => 'Región: '.$regNombre.' eliminada correctamente']);
+    } catch (\Throwable $th)
+    {
+        //throw $th;
+        return redirect('/regiones')->with(['mensaje' => 'No se pudo eliminar la región']);
+    }
 });
