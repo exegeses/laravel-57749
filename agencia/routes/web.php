@@ -241,3 +241,16 @@ Route::post('/destino/update', function ()
         return redirect('/destinos')->with(['mensaje' => 'No se pudo modificar el destino.']);
     }
 });
+Route::get('/destino/delete/{id}', function($id)
+{
+    //obtenemos detos del destino
+    $destino = DB::table('destinos')
+                    ->where('idDestino', $id)
+                    ->first();
+    return view(
+        'destinoDelete',
+        [
+            'destino' => $destino
+        ]
+    );
+});
