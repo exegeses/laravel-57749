@@ -6,15 +6,15 @@
     <div class="bg-light border-secondary col-6 mx-auto
                     shadow rounded p-4 text-danger">
         Se eliminará el destino: <br>
-        <span class="lead">{{ 'destNombre' }}</span>
+        <span class="lead">{{ $destino->destNombre }}</span>
         <br>
-        {{ 'regNombre' }}.
+        {{ $destino->regNombre }}.
         <form action="/destino/destroy" method="post">
             @csrf
             <input type="hidden" name="destNombre"
-                   value="{{ 'destNombre' }}">
+                   value="{{ $destino->destNombre }}">
             <input type="hidden" name="idDestino"
-                   value="{{ 'idDestino' }}">
+                   value="{{ $destino->idDestino }}">
             <button class="btn btn-danger btn-block my-3">
                 Confirmar baja
             </button>
