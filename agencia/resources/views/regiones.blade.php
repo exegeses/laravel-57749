@@ -44,5 +44,8 @@
         </li>
     @endforeach
     </ul>
+    <div class="my-3 d-flex justify-content-end">
+        {{ $regiones->links() }}
+    </div>
 
 @endsection

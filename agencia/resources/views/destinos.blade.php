@@ -43,7 +43,7 @@
                 </p>
             </div>
             <div class="col text-end btn-group">
-                <a href="#" class="btn btn-outline-secondary me-1">
+                <a href="/destino/edit/{{ $destino->idDestino }}" class="btn btn-outline-secondary me-1">
                     <i class="bi bi-pencil-square"></i>
                     Modificar
                 </a>
@@ -55,5 +55,8 @@
         </li>
         @endforeach
     </ul>
+    <div class="my-3 d-flex justify-content-end">
+    {{ $destinos->links() }}
+    </div>
 
 @endsection
