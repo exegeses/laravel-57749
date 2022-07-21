@@ -32,9 +32,14 @@ class MarcaController extends Controller
 
     private function validarForm( Request $request )
     {
-        // [ 'campo'=>'reglas' ]
+        // [ 'campo'=>'reglas' ], [ 'campo.regla'=>'mensaje' ]
         $request->validate(
-            [ 'mkNombre'=>'required|min:2|max:30' ]
+            [ 'mkNombre'=>'required|min:2|max:30' ],
+            [
+              'mkNombre.required'=>'El campo "Nombre de la marca" es obligatorio.',
+              'mkNombre.min'=>'El campo "Nombre de la marca" debe tener al menos 2 caractéres.',
+              'mkNombre.max'=>'El campo "Nombre de la marca" debe tener 30 caractéres como máximo.'
+            ]
         );
     }
     /**
@@ -45,15 +50,27 @@ class MarcaController extends Controller
      */
     public function store( Request $request )
     {
-        //capturar dato enviado
-        $mkNombre = $request->mkNombre;
+
         //validar
         $this->validarForm( $request );
-        //si no valida a: se genera una variable $errors
-        //              b: redirección al form
+        /*si no valida a: se genera una variable $errors
+                      b: redirección al form*/
+        try{
+            // instanciamos
+            $Marca = new Marca;
+            // asignamos atributos
+            $Marca->mkNombre = $mkNombre = $request->mkNombre;
+            //guardamos en table
+            $Marca->save();
 
-        // magia para insertar en tabkla marcas
-        return 'si llegaste hasta acá...';
+            //redirección con mensaje ok
+            return redirect('/marcas')
+                    ->with(['mensaje' => 'Marca: '.$mkNombre.' agregada correctamente']);
+        } catch (\Throwable $th)
+        {
+            //throw $th;
+            return redirect('/marcas')->with(['mensaje' => 'No se pudo agregar la marca.']);
+        }
     }
 
     /**
