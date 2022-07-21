@@ -15,7 +15,8 @@ class MarcaController extends Controller
     public function index()
     {
         //obtenemos listado de marcas  DB::table('marcas')->get()
-        $marcas = Marca::all();
+        //$marcas = Marca::all();
+        $marcas = Marca::paginate(4);
         return view('marcas', ['marcas'=>$marcas]);
     }
 
@@ -26,18 +27,33 @@ class MarcaController extends Controller
      */
     public function create()
     {
-        //
+        return view('marcaCreate');
     }
 
+    private function validarForm( Request $request )
+    {
+        // [ 'campo'=>'reglas' ]
+        $request->validate(
+            [ 'mkNombre'=>'required|min:2|max:30' ]
+        );
+    }
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store( Request $request )
     {
-        //
+        //capturar dato enviado
+        $mkNombre = $request->mkNombre;
+        //validar
+        $this->validarForm( $request );
+        //si no valida a: se genera una variable $errors
+        //              b: redirección al form
+
+        // magia para insertar en tabkla marcas
+        return 'si llegaste hasta acá...';
     }
 
     /**

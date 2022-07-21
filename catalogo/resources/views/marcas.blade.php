@@ -43,5 +43,8 @@
         </li>
     @endforeach
     </ul>
+    <div class="my-3 d-flex justify-content-end">
+        {{ $marcas->links() }}
+    </div>
 
 @endsection
