@@ -16,7 +16,7 @@ class MarcaController extends Controller
     {
         //obtenemos listado de marcas  DB::table('marcas')->get()
         //$marcas = Marca::all();
-        $marcas = Marca::paginate(4);
+        $marcas = Marca::paginate(10);
         return view('marcas', ['marcas'=>$marcas]);
     }
 
@@ -92,7 +92,10 @@ class MarcaController extends Controller
      */
     public function edit($id)
     {
-        //
+        //obtenemos datos de la marca filtrada por su id
+        //$marca = DB::table('marcas')->first($id);
+        $Marca = Marca::find($id);
+        return  view('marcaEdit', [ 'Marca'=>$Marca ]);
     }
 
     /**
