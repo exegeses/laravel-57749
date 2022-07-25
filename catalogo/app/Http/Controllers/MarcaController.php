@@ -126,6 +126,11 @@ class MarcaController extends Controller
         }
     }
 
+    public function confirm( $id )
+    {
+        
+    }
+
     /**
      * Remove the specified resource from storage.
      *
