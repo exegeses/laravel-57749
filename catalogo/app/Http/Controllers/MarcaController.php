@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Marca;
+use App\Models\Producto;
 use Illuminate\Http\Request;
 
 class MarcaController extends Controller
@@ -126,9 +127,23 @@ class MarcaController extends Controller
         }
     }
 
+    private function checkProducto( $idMarca )
+    {
+        //$check = Producto::;
+    }
+
     public function confirm( $id )
     {
-        
+        //Obtenemos datos de la marca filtrados por su Id
+        $Marca = Marca::find($id);
+
+        //si NO hay productos  relacionado a esa marca
+
+            return view('marcaDelete', [ 'Marca'=>$Marca ]);
+
+        //redirección con mensaje que no se puede borrar
+
+
     }
 
     /**
