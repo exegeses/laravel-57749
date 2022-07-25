@@ -93,7 +93,7 @@ class MarcaController extends Controller
     public function edit($id)
     {
         //obtenemos datos de la marca filtrada por su id
-        //$marca = DB::table('marcas')->first($id);
+        //$marca = DB::table('marcas')->where('idMarca', $id)->first();
         $Marca = Marca::find($id);
         return  view('marcaEdit', [ 'Marca'=>$Marca ]);
     }
@@ -105,9 +105,25 @@ class MarcaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        //validación
+        $this->validarForm($request);
+        try {
+            //obtenemos datos de marca a modificar
+            $Marca = Marca::find( $request->idMarca );
+            //asignamos atributos
+            $Marca->mkNombre = $mkNombre = $request->mkNombre;
+            //guardamos cambios
+            $Marca->save();
+            //redirección con mensaje ok
+            return redirect('/marcas')
+                ->with(['mensaje' => 'Marca: '.$mkNombre.' modificada correctamente']);
+        } catch (\Throwable $th)
+        {
+            //throw $th;
+            return redirect('/marcas')->with(['mensaje' => 'No se pudo modificar la marca.']);
+        }
     }
 
     /**
