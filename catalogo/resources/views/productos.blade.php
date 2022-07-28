@@ -23,18 +23,18 @@
         </div>
     </div>
 
-
+    @foreach( $productos as $producto )
     <div class="row mt-3">
         <figure class="col-3">
-            <img src="productos/noDisplible.png" class="img-thumbnail">
+            <img src="/imagenes/productos/{{ $producto->prdImagen }}" class="img-thumbnail">
         </figure>
         <div class="col-8">
-            <h2>Nombre</h2>
-            <span class="precio3">$precio</span>
+            <h2>{{ $producto->prdNombre }}</h2>
+            <span class="precio3">${{ $producto->prdPrecio }}</span>
             <p>
-                Marca: marca <br>
-                Categoría: categoría <br>
-                Descripción
+                Marca: {{ $producto->getMarca->mkNombre }} <br>
+                Categoría: :{{ $producto->getCategoria->catNombre }} <br>
+                {{ $producto->prdDescripcion }}
             </p>
         </div>
         <div class="col-1 d-grid d-md-block">
@@ -48,6 +48,10 @@
             </a>
         </div>
     </div>
+    @endforeach
 
+    <div class="my-3 d-flex justify-content-end">
+        {{ $productos->links() }}
+    </div>
 
 @endsection
