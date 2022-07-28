@@ -129,20 +129,28 @@ class MarcaController extends Controller
 
     private function checkProducto( $idMarca )
     {
-        //$check = Producto::;
+        //$check = Producto::where('idMarca', $idMarca)->first();
+        //$check = Producto::firstWhere('idMarca', $idMarca);
+        $check = Producto::where('idMarca', $idMarca)->count();
+        return $check;
     }
 
     public function confirm( $id )
     {
-        //Obtenemos datos de la marca filtrados por su Id
+        //Obtenemos datos de la marca filtrados por su id
         $Marca = Marca::find($id);
 
         //si NO hay productos  relacionado a esa marca
-
+        if ( $this->checkProducto($id) == 0 ){
             return view('marcaDelete', [ 'Marca'=>$Marca ]);
-
+        }
         //redirección con mensaje que no se puede borrar
-
+            return redirect('/marcas')
+                ->with(
+                    [
+                        'clase'=>'warning',
+                        'mensaje'=>'No se puede eliminar la marca '.$Marca->mkNombre.' ya que tiene productos relacionados.'
+                    ]);
 
     }
 
@@ -152,8 +160,19 @@ class MarcaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy( Request $request )
     {
-        //
+        try {
+            /*$Marca = Marca::find( $request->idMarca );
+            $Marca->delete();*/
+            $Marca = Marca::destroy($request->idMarca);
+            //redirección con mensaje ok
+            return redirect('/marcas')
+            ->with(['mensaje' => 'Marca: '.$request->mkNombre.' eliminada correctamente']);
+        } catch (\Throwable $th)
+        {
+            //throw $th;
+            return redirect('/marcas')->with(['mensaje' => 'No se pudo eliminar la marca.']);
+        }
     }
 }

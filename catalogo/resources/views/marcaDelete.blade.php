@@ -10,7 +10,7 @@
                 {{ $Marca->mkNombre }}
             </span>
         <form action="/marca/destroy" method="post">
-            
+            @method('delete')
             @csrf
             <input type="hidden" name="mkNombre"
                    value="{{ $Marca->mkNombre }}">
