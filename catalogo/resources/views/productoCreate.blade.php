@@ -5,7 +5,7 @@
 
     <div class="alert p-4 col-8 mx-auto shadow">
         <form action="/producto/store" method="post" enctype="multipart/form-data">
-
+        @csrf
             <div class="form-group mb-4">
                 <label for="prdNombre">Nombre del Producto</label>
                 <input type="text" name="prdNombre"
@@ -25,6 +25,10 @@
                 <label for="idMarca">Marca</label>
                 <select class="form-select" name="idMarca" id="idMarca">
                     <option value="">Seleccione una marca</option>
+            @foreach( $marcas as $marca )
+                    <option value="{{ $marca->idMarca }}">{{ $marca->mkNombre }}</option>
+            @endforeach
+
                 </select>
             </div>
 
@@ -32,6 +36,9 @@
                 <label for="idCategoria">Categoría</label>
                 <select class="form-select" name="idCategoria" id="idCategoria">
                     <option value="">Seleccione una categoría</option>
+            @foreach( $categorias as $categoria )
+                    <option value="{{ $categoria->idCategoria }}">{{ $categoria->catNombre }}</option>
+            @endforeach
                 </select>
             </div>
 

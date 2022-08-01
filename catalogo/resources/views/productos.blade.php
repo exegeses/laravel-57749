@@ -16,7 +16,7 @@
             </a>
         </div>
         <div class="col-1 text-end">
-            <a href="" class="btn btn-outline-secondary">
+            <a href="/producto/create" class="btn btn-outline-secondary">
                 <i class="bi bi-plus-square"></i>
                 Agregar
             </a>
