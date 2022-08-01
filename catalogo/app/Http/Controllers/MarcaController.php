@@ -35,11 +35,12 @@ class MarcaController extends Controller
     {
         // [ 'campo'=>'reglas' ], [ 'campo.regla'=>'mensaje' ]
         $request->validate(
-            [ 'mkNombre'=>'required|min:2|max:30' ],
+            [ 'mkNombre'=>'required|unique:marcas,mkNombre|min:2|max:30' ],
             [
               'mkNombre.required'=>'El campo "Nombre de la marca" es obligatorio.',
               'mkNombre.min'=>'El campo "Nombre de la marca" debe tener al menos 2 caractéres.',
-              'mkNombre.max'=>'El campo "Nombre de la marca" debe tener 30 caractéres como máximo.'
+              'mkNombre.max'=>'El campo "Nombre de la marca" debe tener 30 caractéres como máximo.',
+              'mkNombre.unique'=>'No puede haber dos marcas con el mismo nombre.'
             ]
         );
     }

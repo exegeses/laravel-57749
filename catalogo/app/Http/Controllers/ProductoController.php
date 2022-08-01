@@ -46,7 +46,7 @@ class ProductoController extends Controller
                 'prdPrecio' => 'required|numeric|min:0',
                 'idMarca' => 'required|integer',
                 'idCategoria' => 'required|integer',
-                'prdDescripcion' => 'required|min:2|max:150',
+                'prdDescripcion' => 'required|min:3|max:150',
                 'prdImagen'=>'mimes:jpg,jpeg,png,gif,svg,webp|max:2048'
             ],
             [
@@ -61,7 +61,7 @@ class ProductoController extends Controller
                 'idCategoria.required'=>'Seleccione una categoría.',
                 'idCategoria.integer'=>'Seleccione una categoría.',
                 'prdDescripcion.required'=>'Complete el campo Descripción.',
-                'prdDescripcion.min'=>'Complete el campo Descripción con al menos 2 caractéres',
+                'prdDescripcion.min'=>'Complete el campo Descripción con al menos 3 caractéres',
                 'prdDescripcion.max'=>'Complete el campo Descripción con 150 caractéres como máxino.',
                 'prdImagen.mimes'=>'Debe ser una imagen.',
                 'prdImagen.max'=>'Debe ser una imagen de 2MB como máximo.'
@@ -77,7 +77,7 @@ class ProductoController extends Controller
     public function store(Request $request)
     {
         //validación
-
+        $this->validarForm($request);
         //subir imagen *
         //magia para dar de alta
 
