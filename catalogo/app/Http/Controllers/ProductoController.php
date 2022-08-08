@@ -186,6 +186,7 @@ class ProductoController extends Controller
     {
         $Producto = Producto::with(['getMarca', 'getCategoria'])
                         ->find($id);
+        return view('productoDelete', [ 'Producto'=>$Producto ]);
     }
     /**
      * Remove the specified resource from storage.
@@ -193,8 +194,12 @@ class ProductoController extends Controller
      * @param  \App\Models\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Producto $producto)
+    public function destroy( Request $request )
     {
-        //
+        $prdNombre = $request->prdNombre;
+        Producto::destroy( $request->idProducto );
+        //redirección con mensaje ok
+        return redirect('/productos')
+            ->with(['mensaje'=>'Producto: '.$prdNombre.' eliminado correctamente']);
     }
 }
