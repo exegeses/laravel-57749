@@ -30,3 +30,4 @@ Route::get('/producto/create', [ ProductoController::class, 'create' ]);
 Route::post('/producto/store', [ ProductoController::class, 'store' ]);
 Route::get('/producto/edit/{id}', [ ProductoController::class, 'edit' ]);
 Route::put('/producto/update', [ ProductoController::class, 'update' ] );
+Route::get('/producto/delete/{id}', [ ProductoController::class, 'confirm' ]);

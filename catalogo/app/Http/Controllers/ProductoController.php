@@ -182,6 +182,11 @@ class ProductoController extends Controller
             ->with(['mensaje'=>'Producto: '.$prdNombre.' modificado correctamente']);
     }
 
+    public function confirm( $id )
+    {
+        $Producto = Producto::with(['getMarca', 'getCategoria'])
+                        ->find($id);
+    }
     /**
      * Remove the specified resource from storage.
      *
