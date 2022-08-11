@@ -14,7 +14,8 @@ class MarcaController extends Controller
      */
     public function index()
     {
-        //
+        $marcas = Marca::all();
+        return view('marcas', [ 'marcas'=>$marcas ]);
     }
 
     /**
@@ -24,7 +25,7 @@ class MarcaController extends Controller
      */
     public function create()
     {
-        //
+        return view('marcaCreate');
     }
 
     /**

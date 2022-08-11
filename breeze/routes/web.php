@@ -21,10 +21,15 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/marcas', function ()
-{
-    return view('marcas');
-})->middleware(['auth'])->name('marcas');
+
+############################################
+###### CRUD de marcas
+use App\Http\Controllers\MarcaController;
+Route::get('/marcas', [ MarcaController::class, 'index' ] )
+            ->middleware(['auth'])->name('marcas');
+Route::get('/marca/create', [ MarcaController::class, 'create' ])
+            ->middleware(['auth']);
+
 
 Route::get('/uri', [ controller::class, 'method' ])
     ->middleware(['auth'])

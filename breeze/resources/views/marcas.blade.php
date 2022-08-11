@@ -39,12 +39,12 @@
                         </span>
                         </div>
 
-
+                @foreach( $marcas as $marca )
                             <div class="border-b border-gray-100 p-3 flex items-center justify-center">
-                                {{ 'idMarca' }}
+                                {{ $marca->idMarca }}
                             </div>
                             <div class="border-b border-gray-100 p-3 flex items-center justify-start">
-                                {{ 'mkNombre' }}
+                                {{ $marca->mkNombre }}
                             </div>
                             <div class="border-b border-gray-100 p-3 flex items-center justify-center">
                                                 <span class="w-1/4 mx-2">
@@ -63,7 +63,7 @@
                         </span>
                             </div>
 
-
+                        @endforeach
 
                     </div>
 
