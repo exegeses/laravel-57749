@@ -29,6 +29,12 @@ Route::get('/marcas', [ MarcaController::class, 'index' ] )
             ->middleware(['auth'])->name('marcas');
 Route::get('/marca/create', [ MarcaController::class, 'create' ])
             ->middleware(['auth']);
+Route::post('/marca/store', [ MarcaController::class, 'store' ])
+            ->middleware(['auth']);
+Route::get('/marca/edit/{id}', [ MarcaController::class, 'edit' ])
+            ->middleware(['auth']);
+Route::put('/marca/update', [ MarcaController::class, 'update' ])
+            ->middleware(['auth']);
 
 
 Route::get('/uri', [ controller::class, 'method' ])

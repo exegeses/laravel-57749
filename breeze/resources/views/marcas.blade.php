@@ -48,7 +48,7 @@
                             </div>
                             <div class="border-b border-gray-100 p-3 flex items-center justify-center">
                                                 <span class="w-1/4 mx-2">
-                            <a href="/marca/edit/{{ 'idMarca' }}" class="text-yellow-600 hover:text-yellow-500
+                            <a href="/marca/edit/{{ $marca->idMarca }}" class="text-yellow-600 hover:text-yellow-500
                                         bg-gray-50 hover:bg-white px-5 py-1
                                         border border-gray-300 rounded
                                         ">Modificar</a>

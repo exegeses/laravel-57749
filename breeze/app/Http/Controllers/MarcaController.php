@@ -36,7 +36,14 @@ class MarcaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $mkNombre = $request->mkNombre;
+        // validacion
+        $Marca = new Marca;
+        $Marca->mkNombre = $mkNombre;
+        $Marca->save();
+        return redirect('marcas')
+            ->with(['mensaje'=>'Marca: '.$mkNombre.' agregada correctamente']);
+
     }
 
     /**
@@ -56,9 +63,12 @@ class MarcaController extends Controller
      * @param  \App\Models\Marca  $marca
      * @return \Illuminate\Http\Response
      */
-    public function edit(Marca $marca)
+    public function edit( $id )
     {
-        //
+        //obtenemos datos de una marca
+        $Marca = Marca::find($id);
+        //retornamos la vistra del form para modificar
+        return view('marcaEdit', [ 'Marca'=>$Marca ]);
     }
 
     /**
@@ -68,9 +78,13 @@ class MarcaController extends Controller
      * @param  \App\Models\Marca  $marca
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Marca $marca)
+    public function update(Request $request)
     {
-        //
+        $Marca = Marca::find( $request->idMarca );
+        $Marca->mkNombre = $mkNombre = $request->mkNombre;
+        $Marca->save();
+        return redirect('marcas')
+            ->with(['mensaje'=>'Marca: '.$mkNombre.' modificada correctamente']);
     }
 
     /**
