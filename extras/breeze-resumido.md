@@ -9,7 +9,7 @@ vistas usando BLADE + Tailwindcss
 1. proyecto nuevo
     1. composer create-project laravel/laravel breeze
 2. crear base de datos
-   breeze57751
+   breeze
 3. configurar .env para la base creada
 4. correr las migraciones
     1. primero nos movemos a nuestro proyecto
